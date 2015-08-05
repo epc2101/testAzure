@@ -1,0 +1,45 @@
+{
+    "$schema": "http://schemas.microsoft.org/azure/deploymentTemplate?api-version=2015-01-01-preview#",
+    "contentVersion": "1.0",
+    "parameters": {
+        "accountType": {
+            "type": "string",
+            "allowedValues": [
+                "New",
+                "Existing"
+            ],
+            "metadata": {
+                "description": "Use an existing account or create a new account"
+            }
+        },
+        "accountName": {
+            "type": "string",
+            "metadata": {
+                "description": "The name of the Azure Automation account. If this account exists, check the resource group to make sure they match the exisitng account." 
+            }
+        }
+    },
+    "variables": {
+        "templatelink": "[concat('https://raw.githubusercontent.com/QecTu/testAzure/master/', parameters('accountType'), 'AccountTemplate.json')]"
+    },
+    "resources": [
+        {
+            "apiVersion": "2015-01-01",
+            "name": "nestedTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "[variables('templatelink')]",
+                    "contentVersion": "1.0"
+                },
+                "parameters": {
+                    "accountName": {
+                        "value": "[parameters('accountName')]"
+                    }
+                }
+            }
+        }
+    ],
+    "outputs": { }
+}
