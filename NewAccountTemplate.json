@@ -1,0 +1,50 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0",
+    "parameters": {
+        "accountName": {
+            "type": "string",
+            "metadata": {
+                "description": "The name of the Automation account to use.  If this account exists, check the SKU and tags to make sure they match the exisitng account."
+            }
+        }
+    },
+    "variables": {
+		"moduleName": "Hello-WorldModule",
+		"moduleUri":  "https://github.com/azureautomation/automation-packs/raw/master/101-sample-deploy-automation-resources/sample-deploy-module/modules/Hello-WorldModule.zip"
+    },
+    "resources": [
+        {
+            "name": "[parameters('accountName')]",
+            "type": "Microsoft.Automation/automationAccounts",
+            "apiVersion": "2015-01-01-preview",
+			"location":  "[resourceGroup().location]",
+            "dependsOn": [],
+            "tags": {},
+            "properties": {
+                "comment": "Resource defined structure",
+                "sku": {
+                    "name": "free"
+                }
+            },
+            "resources": [
+                {
+                    "name": "[variables('moduleName')]",
+                    "type": "modules",
+                    "apiVersion": "2015-01-01-preview",
+                    "dependsOn": [
+                        "[concat('Microsoft.Automation/automationAccounts/', parameters('accountName'))]"
+                    ],
+                    "tags":  {},
+                    "properties": {
+                        "contentLink": {
+                            "uri": "[variables('moduleUri')]"
+                        }
+                    }
+                }
+
+            ]
+        }
+    ],
+	"outputs": {}
+}
