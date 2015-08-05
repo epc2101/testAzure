@@ -18,7 +18,6 @@
                     "name": "[concat(parameters('accountName'), '/', variables('moduleName'))]",
                     "type": "microsoft.automation/automationAccounts/modules",
                     "apiVersion": "2015-01-01-preview",
-		            "location":  "[resourceGroup().location]",
                     "tags":  {},
                     "properties": {
                         "contentLink": {
