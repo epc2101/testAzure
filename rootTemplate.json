@@ -2,25 +2,25 @@
     "$schema": "http://schemas.microsoft.org/azure/deploymentTemplate?api-version=2015-01-01-preview#",
     "contentVersion": "1.0",
     "parameters": {
-        "accountType": {
+        "newOrExisitingAccount": {
             "type": "string",
             "allowedValues": [
                 "New",
                 "Existing"
             ],
             "metadata": {
-                "description": "Use an existing account or create a new account"
+                "description": "Select whether you want to create a new Automation account or use an existing account."
             }
         },
         "accountName": {
             "type": "string",
             "metadata": {
-                "description": "The name of the Azure Automation account. If this account exists, check the resource group to make sure they match the exisitng account." 
+                "description": "The name of the Automation account to import the module to.  If you want to import your module to an existing account, make sure the resource group matches that of the existing account." 
             }
         }
     },
     "variables": {
-        "templatelink": "[concat('https://raw.githubusercontent.com/QecTu/testAzure/master/', parameters('accountType'), 'AccountTemplate.json')]",
+        "templatelink": "[concat('https://raw.githubusercontent.com/QecTu/testAzure/master/', parameters('newOrExisitingAccount'), 'AccountTemplate.json')]",
         "moduleName": "Hello-WorldModule",
 		"moduleUri":  "https://github.com/azureautomation/automation-packs/raw/master/101-sample-deploy-automation-resources/sample-deploy-module/modules/Hello-WorldModule.zip"
     },
