@@ -20,7 +20,9 @@
         }
     },
     "variables": {
-        "templatelink": "[concat('https://raw.githubusercontent.com/QecTu/testAzure/master/', parameters('accountType'), 'AccountTemplate.json')]"
+        "templatelink": "[concat('https://raw.githubusercontent.com/QecTu/testAzure/master/', parameters('accountType'), 'AccountTemplate.json')]",
+        "moduleName": "Hello-WorldModule",
+		"moduleUri":  "https://github.com/azureautomation/automation-packs/raw/master/101-sample-deploy-automation-resources/sample-deploy-module/modules/Hello-WorldModule.zip"
     },
     "resources": [
         {
@@ -36,6 +38,12 @@
                 "parameters": {
                     "accountName": {
                         "value": "[parameters('accountName')]"
+                    },
+                    "moduleName": {
+                        "value": "[variables('moduleName')]"
+                    },
+                    "moduleUri": {
+                        "value": "[variables('moduleUri')]"
                     }
                 }
             }

@@ -3,25 +3,26 @@
     "contentVersion": "1.0",
     "parameters": {
         "accountName": {
-            "type": "string",
-            "metadata": {
-                "description": "The name of the Automation account to use.  If this account exists, check the SKU and tags to make sure they match the exisitng account."
-            }
+            "type": "string"
+        },
+        "moduleName": {
+            "type": "string"
+        },
+        "moduleUri": { 
+            "type": "string"
         }
     },
     "variables": {
-		"moduleName": "Hello-WorldModule",
-		"moduleUri":  "https://github.com/azureautomation/automation-packs/raw/master/101-sample-deploy-automation-resources/sample-deploy-module/modules/Hello-WorldModule.zip"
     },
     "resources": [
                 {
-                    "name": "[concat(parameters('accountName'), '/', variables('moduleName'))]",
+                    "name": "[concat(parameters('accountName'), '/', parameters('moduleName'))]",
                     "type": "microsoft.automation/automationAccounts/modules",
                     "apiVersion": "2015-01-01-preview",
                     "tags":  {},
                     "properties": {
                         "contentLink": {
-                            "uri": "[variables('moduleUri')]"
+                            "uri": "[parameters('moduleUri')]"
                         }
                     }
                 }
