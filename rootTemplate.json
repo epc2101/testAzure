@@ -15,7 +15,7 @@
         "accountName": {
             "type": "string",
             "metadata": {
-                "description": "The module will be imported to this Automation account.  If you want to import your module to an existing account, make sure the resource group matches." 
+                "description": "The module will be imported to this Automation account. If you want to import your module to an existing account, make sure the resource group matches." 
             }
         }
     },
