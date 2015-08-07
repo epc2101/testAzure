@@ -15,14 +15,14 @@
         "accountName": {
             "type": "string",
             "metadata": {
-                "description": "The name of the Automation account to import the module to.  If you want to import your module to an existing account, make sure the resource group matches that of the existing account." 
+                "description": "The module will be imported to this Automation account.  If you want to import your module to an existing account, make sure the resource group matches." 
             }
         }
     },
     "variables": {
         "templatelink": "[concat('https://raw.githubusercontent.com/QecTu/testAzure/master/', parameters('newOrExisitingAccount'), 'AccountTemplate.json')]",
         "moduleName": "Hello-WorldModule",
-		"moduleUri":  "https://github.com/azureautomation/automation-packs/raw/master/101-sample-deploy-automation-resources/sample-deploy-module/modules/Hello-WorldModule.zip"
+        "moduleUri":  "https://github.com/azureautomation/automation-packs/raw/master/101-sample-deploy-automation-resources/sample-deploy-module/modules/Hello-WorldModule.zip"
     },
     "resources": [
         {
