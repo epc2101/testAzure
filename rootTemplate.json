@@ -15,7 +15,7 @@
         "Account Name": {
             "type": "string",
             "metadata": {
-                "description": "The module will be imported to this Automation account. If you want to import your module to an existing account, make sure the resource group matches and you have entered the correct name."
+            "description": "The module will be imported to this Automation account. If you want to import your module to an existing account, make sure the resource group matches and you have entered the correct name. The account name length must be between 6 to 50 characters, and can contain only letters, numbers, and hyphens."
             }
         },
         "Account Location": {
