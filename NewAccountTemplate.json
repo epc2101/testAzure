@@ -5,10 +5,13 @@
         "accountName": {
             "type": "string"
         },
+        "accountLocation": { 
+            "type": "string"
+        },
         "moduleName": {
             "type": "string"
         },
-        "moduleUri": { 
+        "moduleUri": {
             "type": "string"
         }
     },
@@ -19,7 +22,7 @@
             "name": "[parameters('accountName')]",
             "type": "Microsoft.Automation/automationAccounts",
             "apiVersion": "2015-01-01-preview",
-			"location":  "[resourceGroup().location]",
+			"location":  "[parameters('accountLocation')]",
             "dependsOn": [],
             "tags": {},
             "properties": {

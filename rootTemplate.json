@@ -2,27 +2,41 @@
     "$schema": "http://schemas.microsoft.org/azure/deploymentTemplate?api-version=2015-01-01-preview#",
     "contentVersion": "1.0",
     "parameters": {
-        "newOrExisitingAccount": {
+        "New or existing Automation account": {
             "type": "string",
             "allowedValues": [
                 "New",
                 "Existing"
             ],
             "metadata": {
-                "description": "Select whether you want to create a new Automation account or use an existing account."
+                "description": "Select whether you want to create a new Automation account or use an existing account. WARNING: if you select NEW but use an Automation account name that already exists in your subscription, you will not be notified that your account is being updated. The pricing tier for the account will be set to free and any tags on the account will be erased."
             }
         },
-        "accountName": {
+        "Account Name": {
             "type": "string",
             "metadata": {
-                "description": "The module will be imported to this Automation account. If you want to import your module to an existing account, make sure the resource group matches." 
+                "description": "The module will be imported to this Automation account. If you want to import your module to an existing account, make sure the resource group matches and you have entered the correct name."
+            }
+        },
+        "Account Location": {
+            "type": "string",
+            "defaultValue": "East US 2",
+            "allowedValues": [
+                "Japan East",
+                "East US 2",
+                "West Europe",
+                "Southeast Asia",
+                "South Central US"
+            ],
+            "metadata": {
+                "description": "The location to deploy the Automation account in. If you select an existing account, the location field will not be used."
             }
         }
     },
     "variables": {
-        "templatelink": "[concat('https://raw.githubusercontent.com/QecTu/testAzure/master/', parameters('newOrExisitingAccount'), 'AccountTemplate.json')]",
+        "templatelink": "[concat('https://raw.githubusercontent.com/QecTu/testAzure/master/', parameters('New or existing Automation account'), 'AccountTemplate.json')]",
         "moduleName": "Hello-WorldModule",
-        "moduleUri":  "https://github.com/azureautomation/automation-packs/raw/master/101-sample-deploy-automation-resources/sample-deploy-module/modules/Hello-WorldModule.zip"
+        "moduleUri": "https://github.com/azureautomation/automation-packs/raw/master/101-sample-deploy-automation-resources/sample-deploy-module/modules/Hello-WorldModule.zip"
     },
     "resources": [
         {
@@ -37,7 +51,10 @@
                 },
                 "parameters": {
                     "accountName": {
-                        "value": "[parameters('accountName')]"
+                        "value": "[parameters('Account Name')]"
+                    },
+                    "accountLocation": {
+                        "value": "[parameters('Account Location')]"
                     },
                     "moduleName": {
                         "value": "[variables('moduleName')]"

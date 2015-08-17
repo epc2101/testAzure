@@ -5,6 +5,9 @@
         "accountName": {
             "type": "string"
         },
+         "accountLocation": { 
+            "type": "string"
+        },
         "moduleName": {
             "type": "string"
         },
