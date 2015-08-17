@@ -34,7 +34,7 @@
         }
     },
     "variables": {
-        "templatelink": "[concat('https://raw.githubusercontent.com/QecTu/testAzure/master/', parameters('New or existing Automation account'), 'AccountTemplate.json')]",
+        "templatelink": "[concat('https://raw.githubusercontent.com/epc2101/testAzure/master/', parameters('New or existing Automation account'), 'AccountTemplate.json')]",
         "moduleName": "Hello-WorldModule",
         "moduleUri": "https://github.com/azureautomation/automation-packs/raw/master/101-sample-deploy-automation-resources/sample-deploy-module/modules/Hello-WorldModule.zip"
     },
